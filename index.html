@@ -22,16 +22,11 @@
       background-color: #f0f0f0;
     }
 
-    .shake {
-      animation: shake 0.5s;
-      animation-iteration-count: infinite;
-    }
-
     @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
+      0%   { transform: translateX(0); }
+      25%  { transform: translateX(-5px); }
+      50%  { transform: translateX(5px); }
+      75%  { transform: translateX(-5px); }
       100% { transform: translateX(0); }
     }
   </style>
@@ -47,14 +42,27 @@
       const button = this;
 
       if (!clickedOnce) {
-        button.classList.add('big', 'shake');
+        button.classList.add('big');
         button.textContent = 'Click me again';
+
+        // Apply shake animation using JS
+        button.style.animation = 'shake 0.5s';
+
+        // Optional: Remove animation after it's done (to reset)
+        setTimeout(() => {
+          button.style.animation = '';
+        }, 500);
+
         clickedOnce = true;
       } else {
         window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
       }
     });
   </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
