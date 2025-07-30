@@ -1,33 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Click Me Page</title>
+  <title>動くボタン</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 100px;
+      position: relative;
     }
 
     #clickButton {
+      position: relative;
       font-size: 20px;
       padding: 10px 20px;
       cursor: pointer;
-      transition: all 0.4s ease;
+      transition: font-size 0.3s ease;
     }
 
     .big {
       font-size: 40px;
       background-color: #f0f0f0;
-    }
-
-    @keyframes shake {
-      0%   { transform: translateX(0); }
-      25%  { transform: translateX(-5px); }
-      50%  { transform: translateX(5px); }
-      75%  { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
     }
   </style>
 </head>
@@ -37,6 +31,7 @@
 
   <script>
     let clickedOnce = false;
+    let intervalId;
 
     document.getElementById('clickButton').addEventListener('click', function () {
       const button = this;
@@ -45,16 +40,25 @@
         button.classList.add('big');
         button.textContent = 'Click me again';
 
-        // Apply shake animation using JS
-        button.style.animation = 'shake 0.5s';
+        // スタイル初期化
+        button.style.left = '0px';
+        button.style.top = '0px';
 
-        // Optional: Remove animation after it's done (to reset)
-        setTimeout(() => {
-          button.style.animation = '';
-        }, 500);
+        // 振動の範囲（大きく動く）
+        const range = 30;
+
+        // 高速アニメーション（40msごと）
+        intervalId = setInterval(() => {
+          const offsetX = (Math.random() - 0.5) * 2 * range;
+          const offsetY = (Math.random() - 0.5) * 2 * range;
+          button.style.left = `${offsetX}px`;
+          button.style.top = `${offsetY}px`;
+        }, 40);
 
         clickedOnce = true;
       } else {
+        // 停止してYouTubeに移動
+        clearInterval(intervalId);
         window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
       }
     });
@@ -63,7 +67,4 @@
 </body>
 </html>
 
-
-</body>
-</html>
 
