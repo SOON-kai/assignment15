@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click Me Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    #clickButton {
+      font-size: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .big {
+      font-size: 40px;
+      background-color: #f0f0f0;
+    }
+
+    .shake {
+      animation: shake 0.5s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="clickButton">Click me</button>
+
+  <script>
+    let clickedOnce = false;
+
+    document.getElementById('clickButton').addEventListener('click', function () {
+      const button = this;
+
+      if (!clickedOnce) {
+        button.classList.add('big', 'shake');
+        button.textContent = 'Click me again';
+        clickedOnce = true;
+      } else {
+        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
